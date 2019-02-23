@@ -1,4 +1,6 @@
 '''
+https://www.hackerrank.com/challenges/counting-valleys/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=warmup
+
 Gary is an avid hiker. He tracks his hikes meticulously, paying close attention to small details like topography. 
 During his last hike he took exactly n steps. For every step he took, he noted if it was an uphill, U, or a downhill, D step. Gary's hikes start and end at sea level and each step up or down represents a 1 unit change in altitude. 
 We define the following terms:
@@ -21,14 +23,16 @@ def countingValleys(n, s):
     valleys = 0
     level = 0
 
+    # We only care about the number of times we went below sea level and came back up
     for step in s:
         if (step == "D"):
             level -= 1
-            print(level)
         elif (step == "U"):
             level += 1
-        if (level == -2):
+        # We just came up from a valley back to sea level
+        if (level == 0 and step == "U"):
             valleys += 1
+    
     return valleys
 
 print(countingValleys(8, "UDDDUDUU"))
