@@ -19,20 +19,16 @@ s: a string describing his path
 # @returns Integer denoting the number of valleys Gary walked through
 def countingValleys(n, s):
     valleys = 0
-    downCount = 0
-    upCount = 0
+    level = 0
 
     for step in s:
-        print(downCount)
         if (step == "D"):
-            downCount += 1
-        else:
-            upCount += 1
-
-        if (downCount == 2):
+            level -= 1
+            print(level)
+        elif (step == "U"):
+            level += 1
+        if (level == -2):
             valleys += 1
-            downCount = 0
-
     return valleys
 
 print(countingValleys(8, "UDDDUDUU"))
